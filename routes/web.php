@@ -18,4 +18,7 @@ Route::get('/', function () {
 });
 
 Route::post('/login', [\App\Http\Controllers\SessionController::class, 'store']);
+
 Route::post('/logout', [\App\Http\Controllers\SessionController::class, 'destroy']);
+
+Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);
