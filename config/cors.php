@@ -21,6 +21,8 @@ return [
         'login',
         'logout',
         'register',
+        'email/verify/*',
+        'email/resend',
     ],
 
     'allowed_methods' => ['*'],

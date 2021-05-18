@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Resources\UserView;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -28,6 +29,8 @@ class UserController extends Controller
             'email' => $request->email,
             'password' =>  Hash::make($request->password),
         ]);
+
+        event(new Registered($user));
 
         Auth::guard()->login($user);
 
