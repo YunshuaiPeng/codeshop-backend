@@ -55,7 +55,7 @@ jobs:
             service php8.0-fpm reload
 
             chown -R :www-data .
-            chmod -R 777 database
+            chmod -R 777 database storage bootstrap/cache
 
             # 退出维护模式
             php artisan up
