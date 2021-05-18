@@ -20,6 +20,8 @@ class SessionController extends Controller
                 'email' => '用户名或密码错误'
             ]);
         }
+
+        return response()->json([],201);
     }
 
     public function destroy(Request $request)
