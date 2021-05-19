@@ -49,7 +49,7 @@
 {{-- Subcopy --}}
 @isset($actionText)
 @slot('subcopy')
-    如果点击按钮无法打开，请复制下面的连接到浏览器：
+    如果点击按钮无法打开，请复制下面的链接到浏览器：
     <span class="break-all">[{{ $displayableActionUrl }}]({{ $actionUrl }})</span>
 @endslot
 @endisset
