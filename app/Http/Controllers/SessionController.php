@@ -24,7 +24,9 @@ class SessionController extends Controller
             ]);
         }
 
-        return response()->json([],201);
+        $request->session()->regenerate();
+
+        return response()->json([], 201);
     }
 
     public function destroy(Request $request)
