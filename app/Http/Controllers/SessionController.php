@@ -10,12 +10,15 @@ class SessionController extends Controller
 {
     public function store(Request $request)
     {
-        $credentials = $this->validate($request, [
+        $this->validate($request, [
             'email' => 'required|email|max:255',
-            'password' => 'required'
+            'password' => 'required',
+            'remember_me' => 'boolean'
         ]);
 
-        if (!Auth::attempt($credentials)) {
+        $credentials = ['email' => $request->email, 'password' => $request->password];
+
+        if (!Auth::attempt($credentials, $request->remember_me)) {
             throw ValidationException::withMessages([
                 'email' => '用户名或密码错误'
             ]);
