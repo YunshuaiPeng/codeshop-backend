@@ -23,6 +23,6 @@ Route::post('/logout', [\App\Http\Controllers\SessionController::class, 'destroy
 
 Route::post('/register', [\App\Http\Controllers\UserController::class, 'store']);
 
-Route::get('email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->middleware(['auth:sanctum', 'signed'])->name('verification.verify');
+Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->middleware(['auth:sanctum', 'signed'])->name('verification.verify');
 
 Route::post('/email/resend', [\App\Http\Controllers\VerificationController::class, 'resend'])->middleware('auth:sanctum')->name('verification.send');
