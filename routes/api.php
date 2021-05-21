@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [\App\Http\Controllers\UserController::class, 'show']);
     Route::put('/user', [\App\Http\Controllers\UserController::class, 'update']);
+    Route::put('/password', [\App\Http\Controllers\PasswordController::class, 'update']);
 });
