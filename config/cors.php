@@ -23,6 +23,8 @@ return [
         'register',
         'email/verify/*',
         'email/resend',
+        'password/forgot',
+        'password/reset',
     ],
 
     'allowed_methods' => ['*'],

@@ -26,3 +26,7 @@ Route::post('/register', [\App\Http\Controllers\UserController::class, 'store'])
 Route::get('/email/verify/{id}/{hash}', [\App\Http\Controllers\VerificationController::class, 'verify'])->middleware(['auth:sanctum', 'signed'])->name('verification.verify');
 
 Route::post('/email/resend', [\App\Http\Controllers\VerificationController::class, 'resend'])->middleware('auth:sanctum')->name('verification.send');
+
+Route::post('/password/forgot', [\App\Http\Controllers\PasswordController::class, 'forgot']);
+
+Route::post('/password/reset', [\App\Http\Controllers\PasswordController::class, 'reset']);
