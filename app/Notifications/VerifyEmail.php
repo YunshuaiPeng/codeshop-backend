@@ -47,7 +47,7 @@ class VerifyEmail extends Notification implements ShouldQueue
             ->subject('验证邮箱')
             ->line('欢迎注册，请点击按钮验证邮箱。')
             ->action('点击验证', $this->url($notifiable))
-            ->line('如果不是本人注册，请忽略。');
+            ->line('如果不是本人操作，请忽略。');
     }
 
     /**
