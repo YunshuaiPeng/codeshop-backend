@@ -46,7 +46,7 @@ class VerifyEmail extends Notification implements ShouldQueue
         return (new MailMessage)
             ->subject('验证邮箱')
             ->line('欢迎注册，请点击按钮验证邮箱。')
-            ->action('点击验证', $this->verificationUrl($notifiable))
+            ->action('点击验证', $this->url($notifiable))
             ->line('如果不是本人注册，请忽略。');
     }
 
@@ -63,7 +63,7 @@ class VerifyEmail extends Notification implements ShouldQueue
         ];
     }
 
-    protected function verificationUrl($notifiable)
+    protected function url($notifiable): string
     {
         return config('app.frontend_url') . '/email/verify?' . http_build_query(['link' => URL::temporarySignedRoute(
             'verification.verify',
