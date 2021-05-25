@@ -19,3 +19,8 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::put('/user', [\App\Http\Controllers\UserController::class, 'update']);
     Route::put('/password', [\App\Http\Controllers\PasswordController::class, 'update']);
 });
+
+Route::get('/products/{product}', [\App\Http\Controllers\ProductController::class, 'show']);
+
+Route::get('/categories', [\App\Http\Controllers\CategoryController::class, 'index']);
+Route::get('/categories/{category}', [\App\Http\Controllers\CategoryController::class, 'show']);
