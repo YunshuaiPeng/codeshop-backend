@@ -18,6 +18,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/user', [\App\Http\Controllers\UserController::class, 'show']);
     Route::put('/user', [\App\Http\Controllers\UserController::class, 'update']);
     Route::put('/password', [\App\Http\Controllers\PasswordController::class, 'update']);
+
+    Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show']);
+    Route::post('/cart-items', [\App\Http\Controllers\CartItemController::class, 'store']);
+    Route::delete('/cart-items/{cartItem}', [\App\Http\Controllers\CartItemController::class, 'destroy']);
 });
 
 Route::get('/products/{product}', [\App\Http\Controllers\ProductController::class, 'show']);

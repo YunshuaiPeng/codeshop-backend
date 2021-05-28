@@ -25,5 +25,8 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         JsonResource::withoutWrapping();
+
+        // observers
+        \App\Models\Cart::observe(\App\Observers\CartObserver::class);
     }
 }

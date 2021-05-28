@@ -45,6 +45,25 @@ class User extends Authenticatable implements MustVerifyEmail
         'email_verified_at' => 'datetime',
     ];
 
+    public function cart()
+    {
+        return $this->hasOne(Cart::class);
+    }
+
+    public function cartItems()
+    {
+        return $this->hasManyThrough(CartItem::class, Cart::class);
+    }
+
+    public function initCart()
+    {
+        $cart = new Cart;
+
+        $this->cart()->save($cart);
+
+        return $this;
+    }
+
     /**
      * 实现 Illuminate\Contracts\Auth\MustVerifyEmail 中的方法
      */
