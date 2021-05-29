@@ -17,9 +17,9 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->text('name')->comment('名称');
+            $table->string('name')->comment('名称');
 
-            $table->text('icon')->nullable()->comment('图标');
+            $table->string('icon')->nullable()->comment('图标');
 
             $table->unsignedBigInteger('sort')->comment('顺序');
 

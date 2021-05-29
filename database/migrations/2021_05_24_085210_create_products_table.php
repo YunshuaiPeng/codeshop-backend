@@ -17,7 +17,7 @@ class CreateProductsTable extends Migration
             $table->id();
             $table->timestamps();
 
-            $table->text('name')->comment('名称');
+            $table->string('name')->comment('名称');
 
             $table->json('preview')->comment('预览图');
 
