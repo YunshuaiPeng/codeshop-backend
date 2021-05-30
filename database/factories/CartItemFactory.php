@@ -23,11 +23,21 @@ class CartItemFactory extends Factory
      */
     public function definition()
     {
-        $cartIds = Cart::query()->get('id');
-        $productIds = Product::query()->get('id');
+        static $ids = [];
+
+        start:
+        $cartId = Cart::inRandomOrder()->first()->id;
+        $productId = Product::inRandomOrder()->first()->id;
+
+        if (in_array([$cartId, $productId], $ids)) {
+            goto start;
+        }
+
+        $ids[] = [$cartId, $productId];
+
         return [
-            'cart_id' => $cartIds->random(),
-            'product_id' => $productIds->random(),
+            'cart_id' => $cartId,
+            'product_id' => $productId,
         ];
     }
 }

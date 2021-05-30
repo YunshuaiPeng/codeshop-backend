@@ -22,6 +22,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/cart', [\App\Http\Controllers\CartController::class, 'show']);
     Route::post('/cart-items', [\App\Http\Controllers\CartItemController::class, 'store']);
     Route::delete('/cart-items/{cartItem}', [\App\Http\Controllers\CartItemController::class, 'destroy']);
+
+    Route::post('/orders', [\App\Http\Controllers\OrderController::class, 'store']);
+    Route::get('/orders', [\App\Http\Controllers\OrderController::class, 'index']);
+    Route::get('/orders/{order}', [\App\Http\Controllers\OrderController::class, 'show']);
+
+    Route::get('/mock-payments/{payment}', [\App\Http\Controllers\MockPaymentController::class, 'show']);
+    Route::put('/mock-payments/{payment}', [\App\Http\Controllers\MockPaymentController::class, 'pay']);
 });
 
 Route::get('/products/{product}', [\App\Http\Controllers\ProductController::class, 'show']);
