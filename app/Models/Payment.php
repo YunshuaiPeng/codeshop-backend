@@ -17,6 +17,8 @@ class Payment extends Model
     protected $casts = [
         'amount' => 'float',
         'id_paid' => 'boolean',
+        'id_unpaid' => 'boolean',
+        'id_canceled' => 'boolean',
     ];
 
     protected $attributes = [
@@ -25,6 +27,8 @@ class Payment extends Model
 
     protected $appends = [
         'id_paid',
+        'id_unpaid',
+        'id_canceled',
     ];
 
     protected static function booted()
@@ -64,6 +68,16 @@ class Payment extends Model
         return $this->status == self::STATUS_PAID;
     }
 
+    public function getIsUnpaidAttribute(): bool
+    {
+        return $this->status == self::STATUS_UNPAID;
+    }
+
+    public function getIsCanceledAttribute(): bool
+    {
+        return $this->status == self::STATUS_CANCELED;
+    }
+
     public function pay(): self
     {
         if ($this->status != self::STATUS_UNPAID) {
@@ -74,6 +88,18 @@ class Payment extends Model
         $this->status = self::STATUS_PAID;
         $this->save();
         $this->payable->onPaid();
+        return $this;
+    }
+
+    public function cancle(): self
+    {
+        if (!$this->is_unpaid) {
+            info("Payment@cancle - try to cancle but it's not unpaid [{$this->identifier}] ");
+            return $this;
+        }
+
+        $this->status = self::STATUS_CANCELED;
+        $this->save();
         return $this;
     }
 }

@@ -33,5 +33,6 @@ class AppServiceProvider extends ServiceProvider
 
         // observers
         \App\Models\Cart::observe(\App\Observers\CartObserver::class);
+        \App\Models\Order::observe(\App\Observers\OrderObserver::class);
     }
 }

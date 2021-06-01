@@ -170,4 +170,19 @@ class Order extends Model implements Payable
             return $order;
         });
     }
+
+    public function cancle(): self
+    {
+        if (!$this->is_unpaid) {
+            info("Order@cancle - try to cancle but it's not unpaid [{$this->identifier}] ");
+            return $this;
+        }
+
+        return DB::transaction(function () {
+            $this->status = self::STATUS_CANCELED;
+            $this->save();
+            $this->payment->cancle();
+            return $this;
+        });
+    }
 }
