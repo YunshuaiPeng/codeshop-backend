@@ -15,15 +15,15 @@ class CategorySeeder extends Seeder
     public function run()
     {
         Category::factory()
-            ->count(60)
+            ->count(16)
             ->create();
 
-        $models = Category::query()->whereBetween('id', [11, 60])->get();
+        $models = Category::query()->whereBetween('id', [5, 16])->get();
 
         $pids = [];
 
         foreach ($models as $key => $model) {
-            $pid = mt_rand(1, 10);
+            $pid = mt_rand(1, 4);
             $pids[$pid][] = $pid;
             $model->pid = $pid;
             $model->icon = asset('storage/icons/' . mt_rand(1, 7) . '.png');
