@@ -6,6 +6,7 @@ use App\Http\Resources\OrderResource;
 use App\Models\CartItem;
 use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
 
 class OrderController extends Controller
@@ -51,7 +52,8 @@ class OrderController extends Controller
             ]
         ]);
 
-        $orders = Order::query()
+        $orders = Auth::user()
+            ->orders()
             ->when(
                 $request->status ?? false,
                 function ($query) use ($request) {
