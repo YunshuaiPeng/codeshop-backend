@@ -28,6 +28,8 @@ class CartItemController extends Controller
 
     public function destroy(CartItem $cartItem)
     {
+        $this->authorize('delete', $cartItem);
+
         $cartItem->delete();
     }
 }
