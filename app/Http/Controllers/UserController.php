@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserView;
+use App\Http\Resources\UserResource;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function show(Request $request)
     {
-        return new UserView(Auth::user());
+        return new UserResource(Auth::user());
     }
 
     public function store(Request $request)
@@ -67,6 +67,6 @@ class UserController extends Controller
 
         $user->fresh();
 
-        return new UserView($user);
+        return new UserResource($user);
     }
 }

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\UserView;
+use App\Http\Resources\UserResource;
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -13,7 +13,7 @@ class VerificationController extends Controller
     {
         $request->fulfill();
 
-        return new UserView(Auth::user());
+        return new UserResource(Auth::user());
     }
 
     public function resend(Request $request)
