@@ -26,6 +26,10 @@ class PasswordController extends Controller
             }
         })->validate();
 
+        if ($user->id === 1) {
+            abort(403, '不可以修改测试管理员账号的密码');
+        }
+
         $user->fill([
             'password' => Hash::make($request->password),
         ])->save();
