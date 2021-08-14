@@ -156,7 +156,7 @@ class Order extends Model implements Payable
         return DB::transaction(function () use (
             $order,
             $orderItems,
-            $cartItems,
+            $cartItems
         ) {
             // 保存订单
             $order->save();
